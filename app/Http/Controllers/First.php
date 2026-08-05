@@ -99,8 +99,6 @@ class First extends Controller
             return $this->message('deposit', 'Account number not found.');
         }
 
-        $this->ensureTransactionsTableExists();
-
         try {
             DB::beginTransaction();
 
@@ -154,8 +152,6 @@ return $this->message('withdraw', 'Please enter a valid withdrawal amount.');   
         if ($this->balance($account) < $amount) {
             return $this->message('withdraw', 'Insufficient balance.');
         }
-
-        $this->ensureTransactionsTableExists();
 
         try {
             DB::beginTransaction();
@@ -222,8 +218,6 @@ return $this->message('withdraw', 'Please enter a valid withdrawal amount.');   
         if ($this->balance($sender) < $amount) {
             return $this->message('fundtransfer', 'Insufficient balance.');
         }
-
-        $this->ensureTransactionsTableExists();
 
         try {
             DB::beginTransaction();
@@ -333,8 +327,6 @@ return $this->message('withdraw', 'Please enter a valid withdrawal amount.');   
             return $this->message('acsummary', 'Account number not found.');
         }
 
-        $this->ensureTransactionsTableExists();
-
         $transactions = DB::select(
             'select * from transactions where acn = ? order by created_at desc',
             [$ac]
@@ -410,21 +402,6 @@ return $this->message('withdraw', 'Please enter a valid withdrawal amount.');   
         DB::insert(
             'insert into transactions (acn, transaction_type, amount, remarks) values (?, ?, ?, ?)',
             [$ac, $type, $amount, $remarks]
-        );
-    }
-
-    /** Create the transaction history table if it has not been created yet. */
-    private function ensureTransactionsTableExists(): void
-    {
-        DB::statement(
-            'create table if not exists transactions (
-                id int auto_increment primary key,
-                acn varchar(50),
-                transaction_type varchar(50),
-                amount decimal(10,2),
-                remarks varchar(255),
-                created_at timestamp default current_timestamp
-            )'
         );
     }
 

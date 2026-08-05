@@ -57,3 +57,10 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## Deploying this project
+
+For the no-credit-card InfinityFree deployment process, see
+[`DEPLOY_INFINITYFREE.md`](DEPLOY_INFINITYFREE.md). It covers the hosted MySQL
+configuration, database export/import, Laravel's `public` directory layout,
+and the production environment file.
