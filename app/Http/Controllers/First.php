@@ -104,7 +104,7 @@ class First extends Controller
 
             DB::update(
                 'update account
-                 set amount = cast(coalesce(nullif(amount, \'\'), \'0\') as decimal(15,2)) + ?
+                 set amount = amount + ?
                  where acn = ?',
                 [$amount, $ac]
             );
@@ -158,7 +158,7 @@ return $this->message('withdraw', 'Please enter a valid withdrawal amount.');   
 
             DB::update(
                 'update account
-                 set amount = cast(coalesce(nullif(amount, \'\'), \'0\') as decimal(15,2)) - ?
+                 set amount = amount - ?
                  where acn = ?',
                 [$amount, $ac]
             );
@@ -224,14 +224,14 @@ return $this->message('withdraw', 'Please enter a valid withdrawal amount.');   
 
             DB::update(
                 'update account
-                 set amount = cast(coalesce(nullif(amount, \'\'), \'0\') as decimal(15,2)) - ?
+                 set amount = amount - ?
                  where acn = ?',
                 [$amount, $fromac]
             );
 
             DB::update(
                 'update account
-                 set amount = cast(coalesce(nullif(amount, \'\'), \'0\') as decimal(15,2)) + ?
+                 set amount = amount + ?
                  where acn = ?',
                 [$amount, $toac]
             );

@@ -60,6 +60,9 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 ## Deploying this project
 
+For deployment on Render, see [`DEPLOY_RENDER.md`](DEPLOY_RENDER.md). Render
+must run this Laravel application as a Docker web service, not as a static site.
+
 For the no-credit-card InfinityFree deployment process, see
 [`DEPLOY_INFINITYFREE.md`](DEPLOY_INFINITYFREE.md). It covers the hosted MySQL
 configuration, database export/import, Laravel's `public` directory layout,
