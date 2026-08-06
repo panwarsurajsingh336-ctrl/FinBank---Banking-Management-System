@@ -13,9 +13,9 @@ assets and cannot run Laravel by itself.
 3. In Render, select **New > Blueprint**, connect this repository, and deploy
    the `render.yaml` Blueprint.
 4. When prompted, set `APP_KEY` to the output of
-   `php artisan key:generate --show`. For `APP_URL` and `ASSET_URL`, enter the
-   web-service URL Render assigns, such as `https://finbank.onrender.com` (no
-   trailing slash).
+   `php artisan key:generate --show`. Set `APP_URL` to the web-service URL
+   Render assigns, such as `https://finbank-yz6k.onrender.com` (no trailing
+   slash).
 
 The Blueprint creates a Docker web service and a PostgreSQL database. On every
 start, the container runs Laravel's migrations and optimization commands before
@@ -31,7 +31,6 @@ database and configure these environment variables:
 | --- | --- |
 | `APP_KEY` | Output of `php artisan key:generate --show` |
 | `APP_URL` | Your `https://...onrender.com` URL |
-| `ASSET_URL` | The same Render URL |
 | `DB_CONNECTION` | `pgsql` |
 | `DB_URL` | The database's internal connection string |
 | `SESSION_DRIVER` | `database` |

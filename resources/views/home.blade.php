@@ -35,7 +35,7 @@
                         modern banking solutions for everyone.
                     </p>
 
-                    <a href="#" class="btn hero-btn">
+                    <a href="{{ url('/createac') }}" class="btn hero-btn">
                         Open Account
                     </a>
 

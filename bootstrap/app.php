@@ -11,7 +11,10 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        // Render terminates HTTPS at its proxy. Trust its forwarded headers so
+        // Laravel generates asset and application URLs with the real host and
+        // the https scheme instead of a hard-coded deployment hostname.
+        $middleware->trustProxies(at: '*');
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

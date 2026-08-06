@@ -15,8 +15,6 @@ services:
         sync: false
       - key: APP_URL
         sync: false
-      - key: ASSET_URL
-        sync: false
       - key: DB_CONNECTION
         value: pgsql
       - key: DB_URL
