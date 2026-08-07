@@ -64,10 +64,16 @@ img { max-width: 100%; }
 .section-copy { color: var(--finbank-muted); font-size: 1.03rem; }
 .section-dark .section-copy { color: #cbd7e6; }
 .icon-tile { display: grid; place-items: center; width: 48px; height: 48px; margin-bottom: 1.2rem; color: var(--finbank-primary); background: #e5f7f9; border-radius: 13px; font-size: 1.35rem; font-weight: 800; }
-.service-card, .product-card, .offer-card { height: 100%; padding: 1.7rem; background: var(--finbank-surface); border: 1px solid var(--finbank-border); border-radius: var(--finbank-radius); box-shadow: 0 8px 26px rgba(11,31,58,.06); transition: transform .25s ease, box-shadow .25s ease; }
+.service-card, .product-card, .offer-card { height: 100%; padding: 1.7rem; background: var(--finbank-surface); border: 1px solid var(--finbank-border); border-radius: var(--finbank-radius); box-shadow: 0 8px 26px rgba(11,31,58,.06); transition: transform .25s ease, box-shadow .25s ease, background-color .25s ease, border-color .25s ease, color .25s ease; }
 .service-card:hover, .product-card:hover, .offer-card:hover { transform: translateY(-5px); box-shadow: var(--finbank-shadow); }
+.service-card:hover, .service-card:focus-within { color: #fff; background: var(--finbank-primary); border-color: var(--finbank-primary); box-shadow: 0 20px 45px rgba(11,31,58,.22); }
+.service-card:hover h3, .service-card:focus-within h3 { color: #fff; }
+.service-card:hover p, .service-card:focus-within p { color: #d5dfeb; }
+.service-card:hover .icon-tile, .service-card:focus-within .icon-tile { color: var(--finbank-primary-dark); background: var(--finbank-accent); }
+.service-card:hover .text-link, .service-card:focus-within .text-link { color: var(--finbank-accent); }
 .service-card h3, .product-card h3, .offer-card h3 { color: var(--finbank-primary); font-size: 1.12rem; font-weight: 800; }
 .service-card p, .product-card p, .offer-card p { color: var(--finbank-muted); }
+.service-card h3, .service-card p, .service-card .icon-tile, .service-card .text-link { transition: color .25s ease, background-color .25s ease; }
 .text-link { font-weight: 800; font-size: .9rem; }
 .promo-panel { overflow: hidden; padding: 2.2rem; color: #fff; background: linear-gradient(135deg, var(--finbank-primary), #176077); border-radius: 24px; box-shadow: var(--finbank-shadow); }
 .promo-panel.alt { color: var(--finbank-text); background: linear-gradient(135deg, #e6f7f9, #fff); border: 1px solid var(--finbank-border); }
