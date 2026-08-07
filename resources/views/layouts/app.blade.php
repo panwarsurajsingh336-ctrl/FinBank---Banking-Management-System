@@ -7,7 +7,7 @@
     <meta name="description" content="@yield('description', 'Explore FinBank accounts, payments, transfers and digital banking services.')">
     <link rel="icon" type="image/svg+xml" href="{{ asset('images/logo/finbank-mark.svg') }}">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}?v={{ filemtime(public_path('css/style.css')) }}">
 </head>
 <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
