@@ -67,3 +67,12 @@ For the no-credit-card InfinityFree deployment process, see
 [`DEPLOY_INFINITYFREE.md`](DEPLOY_INFINITYFREE.md). It covers the hosted MySQL
 configuration, database export/import, Laravel's `public` directory layout,
 and the production environment file.
+
+## Using the FinBank demo
+
+FinBank is an educational banking-management application, not a real bank. The
+demo supports account creation, login, deposits, withdrawals, transfers, balance
+inquiry, PIN changes, and transaction history.
+
+For local setup, demo-account instructions, feature walkthroughs, safety notes,
+and troubleshooting, see [`DEMO_GUIDE.md`](DEMO_GUIDE.md).
