@@ -1,7 +1,177 @@
-@extends('layouts.app')
-@section('title', 'Open an Account — FinBank')
-@section('description', 'Start banking with FinBank by opening your account online.')
-@section('content')
-<header class="page-hero"><div class="container"><span class="eyebrow">Get started</span><h1>Start banking with FinBank</h1><p>Open your account in a few straightforward steps and enjoy convenient digital access.</p></div></header>
-<section class="account-section"><div class="container"><div class="row justify-content-center"><div class="col-xl-9"><div class="account-box">@if(!empty($message))<div class="alert alert-info" role="alert">{{ $message }}</div>@endif<div class="mb-4"><h2 class="account-title">Personal details</h2><p class="account-text">Complete all fields to continue your application.</p></div><form method="GET" action="{{ url('/createac') }}"><div class="row g-3"><div class="col-md-6"><label class="form-label" for="name">Full name</label><input id="name" name="name" class="form-control" placeholder="Enter your full name" required></div><div class="col-md-6"><label class="form-label" for="fname">Father's name</label><input id="fname" name="fname" class="form-control" placeholder="Enter father's name" required></div><div class="col-md-6"><label class="form-label" for="email">Email address</label><input id="email" type="email" name="email" class="form-control" placeholder="you@example.com" required></div><div class="col-md-6"><label class="form-label" for="phno">Phone number</label><input id="phno" name="phno" class="form-control" placeholder="Enter phone number" inputmode="tel" required></div><div class="col-md-6"><label class="form-label" for="pin">Choose a PIN</label><input id="pin" type="password" name="pin" class="form-control" placeholder="Choose a secure PIN" inputmode="numeric" required></div><div class="col-md-6"><label class="form-label" for="gender">Gender</label><select id="gender" class="form-select" name="gender" required><option value="">Select an option</option><option>Male</option><option>Female</option><option>Other</option><option>Prefer not to say</option></select></div><div class="col-md-4"><label class="form-label" for="country">Country</label><input id="country" name="country" class="form-control" placeholder="Country" required></div><div class="col-md-4"><label class="form-label" for="state">State</label><input id="state" name="state" class="form-control" placeholder="State" required></div><div class="col-md-4"><label class="form-label" for="city">City</label><input id="city" name="city" class="form-control" placeholder="City" required></div><div class="col-12"><label class="form-label" for="amount">Opening balance</label><input id="amount" type="number" name="amount" class="form-control" min="0" step="0.01" placeholder="Enter opening balance" required></div></div><button type="submit" class="btn create-btn mt-4" name="submit" value="submit">Open account</button></form></div></div></div></div></section>
-@endsection
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Create Account - FinBank</title>
+
+    <!-- Bootstrap 5.1.3 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+</head>
+
+<body>
+
+    @include('nav')
+
+    <!-- Create Account Section Start -->
+    <section class="account-section py-5">
+
+        <div class="container">
+
+            <div class="row justify-content-center">
+
+                <div class="col-lg-8">
+
+                    <div class="account-box">
+
+                        <div class="text-center mb-5">
+
+                            <h1 class="account-title">
+                                Create Your Account
+                            </h1>
+
+                            <p class="account-text">
+                                Open your bank account in just a few simple steps.
+                            </p>
+
+                        </div>
+
+                        <form >
+                            @if (!empty($message))
+                                <div class="alert alert-info">
+                                    {{ $message }}
+                                </div>
+                            @endif
+
+                            @csrf
+
+                            <!-- Name & Father's Name -->
+                            
+                               
+                                <div class=" mb-4">
+                                    <label class="form-label">Name</label>
+                                    <input type="text" class="form-control" name="name"
+                                        placeholder="Enter your name">
+                                </div>
+
+                                <div class="mb-4">
+                                    <label class="form-label">Father's Name</label>
+                                    <input type="text" class="form-control" name="fname"
+                                        placeholder="Enter father's name">
+                                </div>
+
+
+                            <!-- Email -->
+                            <div class="mb-4">
+                                <label class="form-label">Email Address</label>
+                                <input type="email" class="form-control" name="email"
+                                    placeholder="Enter email address">
+                            </div>
+
+                            <!-- Phone -->
+                            <div class="mb-4">
+                                <label class="form-label">Phone Number</label>
+                                <input type="text" class="form-control" name="phno"
+                                    placeholder="Enter phone number">
+                            </div>
+
+                             <div class=" mb-4">
+                                    <label class="form-label">Pin</label>
+                                    <input type="text" class="form-control" name="pin"
+                                        placeholder="Enter your pin">
+                                </div>
+
+
+                            <!-- Gender -->
+                            <div class="mb-4">
+                                <label class="form-label">Gender</label>
+
+                                <select class="form-select" name="gender">
+                                    <option value="">Select Gender</option>
+                                    <option value="Male">Male</option>
+                                    <option value="Female">Female</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+
+                            <!-- Country & State -->
+                            <div class="row">
+
+                                <div class="col-md-6 mb-4">
+                                    <label class="form-label">Country</label>
+                                    <input type="text" class="form-control" name="country"
+                                        placeholder="Enter country">
+                                </div>
+
+                                <div class="col-md-6 mb-4">
+                                    <label class="form-label">State</label>
+                                    <input type="text" class="form-control" name="state"
+                                        placeholder="Enter state">
+                                </div>
+
+                            </div>
+
+                            <!-- City & Amount -->
+                            <div class="row">
+
+                                <div class="col-md-6 mb-4">
+                                    <label class="form-label">City</label>
+                                    <input type="text" class="form-control" name="city"
+                                        placeholder="Enter city">
+                                </div>
+
+                                <div class="col-md-6 mb-4">
+                                    <label class="form-label">Amount</label>
+                                    <input type="number" class="form-control" name="amount"
+                                        placeholder="Enter amount">
+                                </div>
+
+                            </div>
+
+                            <!-- Submit Button -->
+                            <div class="text-center mt-4">
+
+                                <button type="submit" class="btn create-btn" name="submit" value="submit">
+                                    Create Account
+                                </button>
+
+                            </div>
+
+                        </form>
+                        <!-- Form End -->
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+    <!-- Create Account Section End -->
+
+    <!-- Footer Start -->
+    <footer class="footer py-3">
+
+        <div class="container text-center">
+
+            <p class="mb-0">
+                © 2026 FinBank | All Rights Reserved
+            </p>
+
+        </div>
+
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

@@ -1,26 +1,164 @@
-@extends('layouts.app')
-@section('title', 'FinBank — Banking That Moves With You')
-@section('description', 'Manage your money, payments and financial goals with FinBank digital banking.')
-@section('content')
-<section class="hero-section"><div class="container position-relative"><div class="row align-items-center">
-<div class="col-lg-7"><span class="eyebrow">Modern banking, made clear</span><h1 class="hero-title">Banking that moves with you.</h1><p class="hero-text">Manage your money, payments and financial goals with a simpler digital banking experience.</p><div class="hero-actions"><a href="{{ url('/createac') }}" class="btn btn-accent">Open an account</a><a href="#services" class="btn btn-outline-light">Explore FinBank</a></div><div class="trust-row"><span>Protected sessions</span><span>Clear transaction history</span><span>Responsive access</span></div></div>
-<div class="col-lg-5" aria-hidden="true"><div class="hero-visual"><div class="hero-orb hero-orb-one"></div><div class="hero-orb hero-orb-two"></div><div class="phone-panel"><div class="phone-top"><span>Account overview</span><span>•••</span></div><small>Available balance</small><strong>₹••••••</strong><div class="phone-action-row"><span>Transfer</span><span>Cards</span><span>Payments</span></div><div class="phone-transaction"><span>Recent activity</span><b>View all</b></div></div><div class="bank-card-visual"><img src="{{ asset('images/logo/finbank-logo-light.svg') }}" alt="" width="150"><div class="chip"></div><div class="card-number">•••• •••• •••• 4821</div><div class="card-meta"><span>FinBank member</span><span>12/30</span></div></div><div class="security-float">✓ <span>Secure access</span></div><div class="transaction-float"><span>Transfer complete</span><strong>Protected payment</strong></div></div></div>
-</div></div></section>
 
-<section class="section section-white" id="services"><div class="container"><div class="section-heading"><span class="eyebrow">Quick banking access</span><h2 class="section-title">Everything you need, close at hand</h2><p class="section-copy">Move quickly from everyday banking to the products that support your goals.</p></div><div class="row g-4">@foreach ([['01','Open account','Start your FinBank relationship in a few simple steps.','/createac'],['02','View accounts','Explore everyday account options.','/accounts'],['03','Credit cards','Find a card designed around your lifestyle.','/cards'],['04','Digital banking','Manage your finances wherever you are.','/digital-banking']] as $service)<div class="col-md-6 col-xl-3"><article class="service-card"><div class="icon-tile">{{ $service[0] }}</div><h3>{{ $service[1] }}</h3><p>{{ $service[2] }}</p><a class="text-link" href="{{ url($service[3]) }}">Explore →</a></article></div>@endforeach</div></div></section>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<section class="section"><div class="container"><div class="row g-4"><div class="col-lg-7"><article class="promo-panel h-100"><span class="promo-kicker">Digital banking</span><h3>Banking in your hands</h3><p>Access your account summary, update your PIN and manage funds through a focused, responsive interface.</p><a href="{{ url('/digital-banking') }}" class="btn btn-accent mt-4">Explore digital banking</a></article></div><div class="col-lg-5"><article class="promo-panel alt h-100"><span class="promo-kicker">Savings</span><h3>Make your savings work smarter</h3><p>Build stronger financial habits with simple account access and balance management.</p><a href="{{ url('/createac') }}" class="text-link d-inline-block mt-4">Open an account →</a></article></div></div></div></section>
+    <title>FinBank</title>
 
-<section class="section section-white"><div class="container"><div class="section-heading"><span class="eyebrow">Banking designed around you</span><h2 class="section-title">Financial possibilities, clearly presented</h2><p class="section-copy">Choose everyday banking services aligned with the way you live and manage money.</p></div><div class="row g-4">@foreach ([['Savings accounts','Flexible account options for everyday money management.','/accounts'],['Current accounts','Practical banking for frequent financial activity.','/accounts'],['Fixed deposits','Structured savings choices for future goals.','/accounts'],['Digital banking','Convenient access wherever your day takes you.','/digital-banking']] as $item)<div class="col-md-6"><article class="product-card"><h3>{{ $item[0] }}</h3><p>{{ $item[1] }}</p><a class="text-link" href="{{ url($item[2]) }}">Learn more →</a></article></div>@endforeach</div></div></section>
+    <!-- Bootstrap 5.1.3 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-<section class="section cards-showcase"><div class="container"><div class="section-heading"><span class="eyebrow">FinBank cards</span><h2 class="section-title">Find the right card for you</h2><p class="section-copy">Everyday convenience, premium experiences and simple account management.</p></div><div class="row g-4 align-items-center">@foreach ([['Classic','Everyday rewards and shopping benefits.','classic'],['Platinum','Travel and dining privileges.','platinum'],['Signature','Premium lifestyle experiences.','signature']] as $card)<div class="col-lg-4"><article class="credit-card {{ $card[2] }}"><div class="credit-card-top"><img src="{{ asset('images/logo/finbank-logo-light.svg') }}" alt="FinBank" width="130"><span>)))</span></div><div class="chip"></div><div class="card-number">•••• •••• •••• 4821</div><div class="card-meta"><span>{{ $card[0] }}</span><span>12/30</span></div></article><div class="text-center mt-3"><h3 class="h5 fw-bold">FinBank {{ $card[0] }}</h3><p class="text-muted">{{ $card[1] }}</p></div></div>@endforeach</div><div class="text-center mt-4"><a href="{{ url('/cards') }}" class="btn primary-btn btn-dark">Explore cards</a></div></div></section>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+</head>
+<body>
+    @include('nav')
 
-<section class="section section-white"><div class="container"><div class="section-heading"><span class="eyebrow">Financing</span><h2 class="section-title">Financing for life’s important moments</h2><p class="section-copy">Explore solutions for personal plans, a future home, education, business and your next vehicle.</p></div><div class="row g-4">@foreach ([['Personal loan','Financial flexibility when you need it.'],['Home loan','Take the next step toward your future home.'],['Car loan','Finance your next journey with flexible options.'],['Education loan','Support the learning goals that shape your future.']] as $index => $loan)<div class="col-md-6 col-xl-3"><article class="service-card"><div class="icon-tile">{{ str_pad($index+1,2,'0',STR_PAD_LEFT) }}</div><h3>{{ $loan[0] }}</h3><p>{{ $loan[1] }}</p><a href="{{ url('/loans') }}" class="text-link">Explore loan →</a></article></div>@endforeach</div></div></section>
+    <!-- Hero Section Start -->
+    <section class="hero-section">
 
-<section class="section"><div class="container"><div class="section-heading"><span class="eyebrow">Featured offers</span><h2 class="section-title">More value in everyday moments</h2></div><div class="row g-4">@foreach ([['Dining benefits','Enjoy selected benefits with participating dining experiences.'],['Travel benefits','Discover travel privileges available with eligible products.'],['Shopping rewards','Make everyday purchases more rewarding.']] as $offer)<div class="col-md-4"><article class="offer-card"><h3>{{ $offer[0] }}</h3><p>{{ $offer[1] }}</p><a href="{{ url('/offers') }}" class="text-link">Discover offers →</a></article></div>@endforeach</div></div></section>
+        <div class="container">
 
-<section class="section section-dark"><div class="container"><div class="row align-items-center g-5"><div class="col-lg-6"><span class="eyebrow">Security at every step</span><h2 class="section-title">Confidence built into every interaction</h2><p class="section-copy">Protected sessions, safer data handling and controlled account access support your online banking experience.</p><a href="{{ url('/security') }}" class="btn btn-outline-light mt-3">Explore security</a></div><div class="col-lg-6"><ul class="security-list"><li>Secure sign-in and protected sessions</li><li>Parameterized database operations</li><li>Masked card information and account privacy</li><li>Accessible account tools across devices</li></ul></div></div></div></section>
+            <div class="row align-items-center">
 
-<section class="section"><div class="container"><div class="promo-panel alt text-center"><span class="promo-kicker">Build with us</span><h2 class="section-title mt-2">Build the future of banking</h2><p>Discover the teams and opportunities shaping simpler, more thoughtful financial experiences.</p><a href="{{ url('/careers') }}" class="btn primary-btn btn-dark mt-3">Explore careers</a></div></div></section>
-<section class="section section-white"><div class="container"><div class="final-cta"><div><span class="eyebrow">Start with FinBank</span><h2>Ready for banking that moves with you?</h2><p>Open an account and bring everyday banking into one clear, secure experience.</p></div><a href="{{ url('/createac') }}" class="btn btn-accent primary-btn">Open an account</a></div></div></section>
-@endsection
+                <div class="col-lg-6">
+
+                    <h1 class="hero-title">
+                        Secure Banking For Your Bright Future
+                    </h1>
+
+                    <p class="hero-text">
+                        Welcome to FinBank where security,
+                        trust, and innovation come together to provide
+                        modern banking solutions for everyone.
+                    </p>
+
+                    <a href="{{ url('/createac') }}" class="btn hero-btn">
+                        Open Account
+                    </a>
+
+                </div>
+
+                <div class="col-lg-6 text-center">
+
+                    <img src="https://images.unsplash.com/photo-1554224155-6726b3ff858f"
+                         class="img-fluid hero-image"
+                         alt="Bank Image">
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+    <!-- Hero Section End -->
+
+
+    <!-- Services Section Start -->
+    <section class="services py-5">
+
+        <div class="container">
+
+            <div class="text-center mb-5">
+
+                <h2 class="section-title">
+                    Our Banking Services
+                </h2>
+
+                <p>
+                    Fast, secure, and reliable banking services.
+                </p>
+
+            </div>
+
+            <div class="row g-4">
+
+                <div class="col-md-4">
+
+                    <div class="card service-card h-100">
+
+                        <div class="card-body text-center">
+
+                            <h3 class="service-title">
+                                Savings Account
+                            </h3>
+
+                            <p>
+                                Keep your money safe with secure
+                                and flexible savings accounts.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <div class="card service-card h-100">
+
+                        <div class="card-body text-center">
+
+                            <h3 class="service-title">
+                                Online Banking
+                            </h3>
+
+                            <p>
+                                Access your account anytime and
+                                anywhere with digital banking.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-4">
+
+                    <div class="card service-card h-100">
+
+                        <div class="card-body text-center">
+
+                            <h3 class="service-title">
+                                Loan Services
+                            </h3>
+
+                            <p>
+                                Easy and affordable loans for
+                                personal and business needs.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+    <!-- Services Section End -->
+
+
+    <!-- Footer Start -->
+    <footer class="footer">
+
+        <div class="container text-center">
+
+            <p class="mb-0">
+                © 2026 FinBank | All Rights Reserved
+            </p>
+
+        </div>
+
+    </footer>
+   
+</body>
+</html>
